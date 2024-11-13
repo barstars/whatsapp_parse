@@ -17,18 +17,19 @@ driver = webdriver.Chrome(service=service)
 # Открытие страницы
 driver.get("https://web.whatsapp.com/")
 
+
 # Сделайте скриншот элемента
-WebDriverWait(driver, 3*60).until(
-	EC.presence_of_element_located((By.CSS_SELECTOR, "#app > div > div.landing-wrapper > div.landing-window > div.landing-main > div > div > div._ak96 > div > canvas")))
+# WebDriverWait(driver, 3*60).until(
+# 	EC.presence_of_element_located((By.CSS_SELECTOR, "#app > div > div.x1c4vz4f.xs83m0k.xdl72j9.x1g77sc7.x78zum5.xozqiw3.x1oa3qoh.x12fk4p8.x1nhvcw1.xdt5ytf.xe4h88v.x1dr59a3.xp22266.xw2csxc.x1odjw0f.xyinxu5.xbxaen2.x1g2khh7.x1u72gb5.xp9ttsr.x6s0dn4.x9f619.xcnrxux.xvmahel.xdounpk > div.x1c4vz4f.xs83m0k.xdl72j9.x1g77sc7.x78zum5.xozqiw3.x1oa3qoh.x12fk4p8.xeuugli.x2lwn1j.xl56j7k.xdt5ytf.x6s0dn4 > div.x1lliihq > div > div > div.x1c4vz4f.xs83m0k.xdl72j9.x1g77sc7.x78zum5.xozqiw3.x1oa3qoh.x12fk4p8.xeuugli.x2lwn1j.x1nhvcw1.x1q0g3np.x1cy8zhl.x1ism021.x1w450gt > div.x1c4vz4f.xs83m0k.xdl72j9.x1g77sc7.xeuugli.x2lwn1j.xozqiw3.xamitd3.x7v7x1q.x1n2onr6.x5zbcu4.x1dnwe82.x8vdgqj > div > canvas")))
 
-element = driver.find_element(By.CSS_SELECTOR, "#app > div > div.landing-wrapper > div.landing-window > div.landing-main > div > div > div._ak96 > div > canvas")
-element.screenshot("element_screenshot.png")
+# element = driver.find_element(By.CSS_SELECTOR, "#app > div > div.x1c4vz4f.xs83m0k.xdl72j9.x1g77sc7.x78zum5.xozqiw3.x1oa3qoh.x12fk4p8.x1nhvcw1.xdt5ytf.xe4h88v.x1dr59a3.xp22266.xw2csxc.x1odjw0f.xyinxu5.xbxaen2.x1g2khh7.x1u72gb5.xp9ttsr.x6s0dn4.x9f619.xcnrxux.xvmahel.xdounpk > div.x1c4vz4f.xs83m0k.xdl72j9.x1g77sc7.x78zum5.xozqiw3.x1oa3qoh.x12fk4p8.xeuugli.x2lwn1j.xl56j7k.xdt5ytf.x6s0dn4 > div.x1lliihq > div > div > div.x1c4vz4f.xs83m0k.xdl72j9.x1g77sc7.x78zum5.xozqiw3.x1oa3qoh.x12fk4p8.xeuugli.x2lwn1j.x1nhvcw1.x1q0g3np.x1cy8zhl.x1ism021.x1w450gt > div.x1c4vz4f.xs83m0k.xdl72j9.x1g77sc7.xeuugli.x2lwn1j.xozqiw3.xamitd3.x7v7x1q.x1n2onr6.x5zbcu4.x1dnwe82.x8vdgqj > div > canvas")
+# element.screenshot("element_screenshot.png")
 
-time.sleep(3)
+# time.sleep(3)
 
 # Узнать открылос ли ватсап
 WebDriverWait(driver, 3*60).until(
-	EC.presence_of_element_located((By.CSS_SELECTOR,"#pane-side > div:nth-child(1) > div > div > div:nth-child(1)")))
+	EC.presence_of_element_located((By.CSS_SELECTOR,"#pane-side > div:nth-child(1)")))
 
 time.sleep(5)
 
@@ -42,33 +43,41 @@ while True:
 
 		for el in group_elements:
 			if (el.text == "Öskemen Debate"):
+				driver.execute_script("arguments[0].scrollIntoView(true);", el)
 				el.click()
 		break
 	except selenium.common.exceptions.StaleElementReferenceException as e:
 		pass
 
-a = 0
-while True:
-	try:
-		scroll_focus_element = driver.find_element(By.CSS_SELECTOR, "#main > div._amm9 > div > div._ajyl > div.x3psx0u.xwib8y2.xkhd6sd.xrmvbpv > div:nth-child(1)")
-		driver.execute_script("arguments[0].scrollIntoView(true);", scroll_focus_element)
-		a += 1
-		print(a)
-	except selenium.common.exceptions.StaleElementReferenceException:
-		print("Element became stale. Trying again...")
-		continue
+print("as")
 
-	try:
-		if driver.find_element(By.CSS_SELECTOR, "#main > div._amm9 > div > div._ajyl > div.x3psx0u.xwib8y2.xkhd6sd.xrmvbpv > div:nth-child(2) > div > div > div > div._amk6 > div.x1c4vz4f.xs83m0k.xdl72j9.x1g77sc7.x78zum5.xozqiw3.x1oa3qoh.x12fk4p8.xeuugli.x2lwn1j.x1nhvcw1.xdt5ytf.x6s0dn4.x2b8uid.x1rjt51p.x16m5f1z > div.x9f619.x13faqbe.x1iorvi4.x1nxh6w3.xcgms0a.x1fcty0u.x40yjcy"):
-			break
-	except Exception as e:
-		pass
-	time.sleep(1)
 
-messages = driver.find_elements(By.CSS_SELECTOR, '[role="row"]')
+WebDriverWait(driver, 60).until(
+	EC.presence_of_element_located((By.CSS_SELECTOR,"#main > div.x1n2onr6.x1vjfegm.x1cqoux5.x14yy4lh > div > div.x10l6tqk.x13vifvy.x17qophe.xyw6214.x9f619.x78zum5.xdt5ytf.xh8yej3.x5yr21d.x6ikm8r.x1rife3k.xjbqb8w.x1ewm37j > div.x3psx0u.xwib8y2.xkhd6sd.xrmvbpv > div:nth-child(2)")))
+
+# a = 0
+# while True:
+# 	parent_element = driver.find_element(By.CSS_SELECTOR, "#main > div.x1n2onr6.x1vjfegm.x1cqoux5.x14yy4lh > div > div.x10l6tqk.x13vifvy.x17qophe.xyw6214.x9f619.x78zum5.xdt5ytf.xh8yej3.x5yr21d.x6ikm8r.x1rife3k.xjbqb8w.x1ewm37j > div.x3psx0u.xwib8y2.xkhd6sd.xrmvbpv")
+# 	try:
+# 		scroll_focus_element = parent_element.find_element(By.CSS_SELECTOR, ":scope > *")
+# 		driver.execute_script("arguments[0].scrollIntoView(true);", scroll_focus_element)
+# 		a += 1
+# 		print(a)
+# 	except selenium.common.exceptions.StaleElementReferenceException:
+# 		print("Element became stale. Trying again...")
+# 		continue
+
+# 	try:
+# 		if driver.find_element(By.CSS_SELECTOR, "._amk4._aqjf._amkb"):
+# 			break
+# 	except Exception as e:
+# 		pass
+# 	time.sleep(1)
+
+mes_conteiner = driver.find_element(By.CSS_SELECTOR, '#main > div.x1n2onr6.x1vjfegm.x1cqoux5.x14yy4lh > div > div.x10l6tqk.x13vifvy.x17qophe.xyw6214.x9f619.x78zum5.xdt5ytf.xh8yej3.x5yr21d.x6ikm8r.x1rife3k.xjbqb8w.x1ewm37j > div.x3psx0u.xwib8y2.xkhd6sd.xrmvbpv')
+messages = mes_conteiner.find_elements(By.CSS_SELECTOR, '[role="row"]')
 for message in messages:
 	print(message.text)
-
 
 
 driver.quit()
@@ -88,3 +97,11 @@ driver.quit()
 # названия группый
 # #pane-side > div:nth-child(1) > div > div > div:nth-child(1) > div > div > div > div._ak8l > div._ak8o > div._ak8q > span
 
+# class="_amk4 _aqjf _amkb"
+
+
+# <div class="_amjw _amk1 _aotl  focusable-list-item" tabindex="-1">
+
+# <div class="" role="row">
+
+# class="_amk4 _aqjf _amkb"
